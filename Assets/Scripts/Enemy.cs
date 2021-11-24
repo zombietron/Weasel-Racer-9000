@@ -24,6 +24,5 @@ public class Enemy : MonoBehaviour
     public void IDied()
     {
         GameManager.Manager.CurrentScore += pointValue;
-        UIManager.Instance.UpdateScore(GameManager.Manager.CurrentScore);
     }
 }

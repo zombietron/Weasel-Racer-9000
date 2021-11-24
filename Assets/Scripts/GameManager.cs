@@ -15,7 +15,11 @@ public class GameManager : MonoBehaviour
     
     public int CurrentScore
     {
-        set { currentScore = value; }
+        set 
+        { 
+            currentScore = value;
+            UIManager.Instance.UpdateScore(currentScore);
+        }
         get { return currentScore; }
     }
 
@@ -57,8 +61,12 @@ public class GameManager : MonoBehaviour
 
         
     }
+    private void Start()
+    {
+        SaveData.LoadGameData();
+    }
 
-    
+
     public void SpawnVehicle(int num)
     {
         Instantiate<GameObject>(carOptions[carSelection], player);
@@ -79,8 +87,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         CheckHighScore();
-        //save some data
-        //create a save data object
+        SaveData.SaveGameData();
     }
 
     public void CheckHighScore()

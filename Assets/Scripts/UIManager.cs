@@ -13,7 +13,7 @@ public class UIManager : MonoBehaviour
     }
 
     [SerializeField] TMP_Text scoreValue;
-
+    [SerializeField] TMP_Text highScore;
     // Start is called before the first frame update
     void Awake()
     {
@@ -21,6 +21,7 @@ public class UIManager : MonoBehaviour
         {
             instance = this;
         }
+        SetHighScore(GameManager.Manager.HighScore);
     }
 
     public void UpdateScore(int score)
@@ -28,5 +29,9 @@ public class UIManager : MonoBehaviour
         scoreValue.text = score.ToString();
     }
 
+    public void SetHighScore(int score)
+    {
+        highScore.text = score.ToString();
+    }
 
 }

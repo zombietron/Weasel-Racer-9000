@@ -66,6 +66,15 @@ public class VehicleController : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("I  ENTERED A TRIGGER");
+        if(other.gameObject.CompareTag("collectible"))
+        {
+            Destroy(other.gameObject);
+        }
+    }
+
 
 
 }
