@@ -5,45 +5,33 @@ using System.IO;
 
 public static class SaveData
 {
-    
     public static void SaveGameData()
     {
-        //make a string to declare the path to the save file
-        string path = Application.persistentDataPath + "/save.json";
+        //string that contains our file path
+        string path = Application.persistentDataPath + "/savedata.json";
 
-        //create a stream writer so we can control file access (open/close)
-
-        //check the path in console just in case (debugging purposes)
-        //Debug.Log(path);
-        //create a new data object
+        //create our save data
         Data d = new Data();
 
-        //grab the values we're saving from the Game Manager, in this case, the last chosen car and the High Score
-        
         d.lastCarChosen = GameManager.Manager.CarChoice;
         d.highScore = GameManager.Manager.HighScore;
-        
-        //convert our provided save object to Json
+
         string saveFile = JsonUtility.ToJson(d);
 
-        //check if the file exists if not, create the save file
-        
-        if(!File.Exists(path))
+        if (!File.Exists(path))
         {
             File.Create(path);
         }
 
-        StreamWriter write = new StreamWriter(path);
-        //write save file to disk (note this will completely overwrite the existing save file. 
-        write.Write(saveFile);
-        write.Close();
+        StreamWriter writer = new StreamWriter(path);
+        writer.Write(saveFile);
+        writer.Close();
+        
     }
 
     public static void LoadGameData()
     {
-
-        string path = Application.persistentDataPath + "/save.json";
-
+        string path = Application.persistentDataPath + "/savedata.json";
         if (File.Exists(path))
         {
             StreamReader r = new StreamReader(path);
@@ -54,14 +42,11 @@ public static class SaveData
             r.Close();
         }
         else
-            Debug.LogWarning("No Save File Detected, Starting game with fresh file.");
-
-        
+            Debug.Log("No save data exists, you are starting at 0");
     }
 }
 
-//Our save data class to be created when we save the game. 
-public class Data 
+public class Data
 {
     public int lastCarChosen;
     public int highScore;

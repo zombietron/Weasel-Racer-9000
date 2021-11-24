@@ -50,14 +50,16 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        
-        DontDestroyOnLoad(this);
-        if (manager == null)
+        if (manager != null)
         {
-            manager = this;
+            Destroy(gameObject);
+            return;
         }
+        DontDestroyOnLoad(this);
 
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        manager = this;
+
+       SceneManager.sceneLoaded += OnSceneLoaded;
 
         
     }
@@ -80,7 +82,6 @@ public class GameManager : MonoBehaviour
             Debug.Log("OnSceneLoadedCalled");
             SpawnVehicle(carSelection);
             UIManager.Instance.UpdateScore(currentScore);
-            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         }
     }
 
