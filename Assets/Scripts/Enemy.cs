@@ -1,4 +1,4 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -9,10 +9,13 @@ public class Enemy : MonoBehaviour
     public int pointValue;
     NavMeshAgent agent;
     Transform followObject;
+
+    public float size;
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         followObject = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        SetScale();
     }
 
     private void FixedUpdate()
@@ -25,4 +28,10 @@ public class Enemy : MonoBehaviour
     {
         GameManager.Manager.CurrentScore += pointValue;
     }
+
+    public void SetScale()
+    {
+        transform.localScale *= size;
+    }
+
 }

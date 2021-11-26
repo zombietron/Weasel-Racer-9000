@@ -10,12 +10,12 @@ public class DestroyOnPlayerCollision : MonoBehaviour
     {
         enem = GetComponent<Enemy>();
     }
+
     private void OnCollisionEnter(Collision collision)
     {
         
-        if(collision.gameObject.CompareTag("Player"))
+        if(collision.gameObject.CompareTag("bullet"))
         {
-            Debug.Log("I collided with player I am a: " + collision);
             
             if (!collidedWithPlayer)
             {
