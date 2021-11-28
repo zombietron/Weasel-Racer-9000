@@ -8,6 +8,10 @@ public class VehicleController : MonoBehaviour
     public float maxSpeed;
     public float rotateSpeed = 10.0f;
 
+    public Transform bulletSpawn;
+
+    public GameObject projectile;
+
     public bool grounded = false;
     Rigidbody rb;
 
@@ -22,6 +26,21 @@ public class VehicleController : MonoBehaviour
         SetVehicleForwardVelocity();
         RotateVehicle();
         CheckGrounded();
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            FireProjectile();
+        }
+    }
+
+    public void FireProjectile()
+    {
+        GameObject go = Instantiate<GameObject>(projectile);
+        go.transform.position = bulletSpawn.position;
+        go.transform.rotation = transform.rotation;
     }
 
     public void SetVehicleForwardVelocity()
@@ -68,7 +87,6 @@ public class VehicleController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("I  ENTERED A TRIGGER");
         if(other.gameObject.CompareTag("collectible"))
         {
             Destroy(other.gameObject);

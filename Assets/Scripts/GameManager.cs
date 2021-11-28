@@ -34,6 +34,10 @@ public class GameManager : MonoBehaviour
         set { carSelection = value; }
         get { return carSelection;  }
     }
+
+    public delegate void OnLevelStart();
+
+    public OnLevelStart levelStart;
     
     //the transform of the 'player' object to instantiate our car mesh as a child of
     Transform player;
@@ -82,6 +86,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("OnSceneLoadedCalled");
             SpawnVehicle(carSelection);
             UIManager.Instance.UpdateScore(currentScore);
+            levelStart.Invoke();
         }
     }
 
