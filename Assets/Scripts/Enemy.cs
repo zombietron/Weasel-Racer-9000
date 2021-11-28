@@ -34,4 +34,5 @@ public class Enemy : MonoBehaviour
         transform.localScale *= size;
     }
 
+
 }
