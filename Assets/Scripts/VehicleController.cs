@@ -16,7 +16,6 @@ public class VehicleController : MonoBehaviour
     Rigidbody rb;
 
 
-
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
