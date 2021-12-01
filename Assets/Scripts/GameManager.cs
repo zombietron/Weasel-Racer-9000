@@ -12,11 +12,11 @@ public class GameManager : MonoBehaviour
     }
 
     [SerializeField] int currentScore;
-    
+
     public int CurrentScore
     {
-        set 
-        { 
+        set
+        {
             currentScore = value;
             UIManager.Instance.UpdateScore(currentScore);
         }
@@ -25,19 +25,26 @@ public class GameManager : MonoBehaviour
 
     //an array that stores car models for opening screen selection.
     [SerializeField] GameObject[] carOptions;
-    
+
     //the index of the selected car, defaulting at 0 (first car). 
     [SerializeField] int carSelection;
 
     public int CarChoice
     {
         set { carSelection = value; }
-        get { return carSelection;  }
+        get { return carSelection; }
     }
 
     public delegate void OnLevelStart();
 
     public OnLevelStart levelStart;
+
+    bool isRunning;
+    public bool running
+    {
+        private set{}
+        get { return isRunning; }
+    }
     
     //the transform of the 'player' object to instantiate our car mesh as a child of
     Transform player;
@@ -67,6 +74,14 @@ public class GameManager : MonoBehaviour
 
         
     }
+
+    private void Update()
+    {
+        if(Player.Health <=0 && isRunning)
+        {
+            GameOver();
+        }
+    }
     private void Start()
     {
         SaveData.LoadGameData();
@@ -80,6 +95,7 @@ public class GameManager : MonoBehaviour
 
     public void OnSceneLoaded(Scene s, LoadSceneMode m)
     {
+        isRunning = true;
         if (SceneManager.GetActiveScene().buildIndex == 1)
         {
             player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -92,8 +108,13 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        isRunning = false;
+        UIManager.Instance.DisplayGameOver();
+        Player.Health = 3;
         CheckHighScore();
         SaveData.SaveGameData();
+        Debug.Log("Game over man!");
+
     }
 
     public void CheckHighScore()
@@ -103,4 +124,18 @@ public class GameManager : MonoBehaviour
             highScore = currentScore;
         }
     }
+
+    public void RestartGame()
+    {
+        StartCoroutine(restart(.5f));    
+    }
+
+    public IEnumerator restart(float t)
+    {
+        SpawnController.Instance.StopAllCoroutines();
+        yield return new WaitForSeconds(t);
+        SceneManager.LoadScene(0);
+        yield break;
+    }
+
 }

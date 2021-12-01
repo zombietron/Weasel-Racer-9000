@@ -4,18 +4,10 @@ using UnityEngine;
 
 public class Boss : Enemy
 {
-    
-
-    // Start is called before the first frame update
-    void Start()
+    public override void DealDamage()
     {
-       
-
+        Player.Health -= 2;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }

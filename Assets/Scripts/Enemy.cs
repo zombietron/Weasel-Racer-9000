@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        followObject = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        followObject = GameObject.FindGameObjectWithTag("Player").transform;
         SetScale();
     }
 
@@ -24,14 +24,30 @@ public class Enemy : MonoBehaviour
 
     }
 
-    public void IDied()
+    public virtual void IDied()
     {
         GameManager.Manager.CurrentScore += pointValue;
     }
 
-    public void SetScale()
+    //made this overridable as well
+    public virtual void SetScale()
     {
         transform.localScale *= size;
+    }
+
+    //made this overridable from child classes to change damage amount
+    public virtual void DealDamage()
+    {
+        Player.Health -= 1;
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Player") && GameManager.Manager.running)
+        {
+            DealDamage();
+            Debug.Log("Hit a player! Player health is : " + Player.Health);
+        }
     }
 
 

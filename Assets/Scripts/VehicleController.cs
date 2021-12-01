@@ -15,6 +15,8 @@ public class VehicleController : MonoBehaviour
     public bool grounded = false;
     Rigidbody rb;
 
+
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();

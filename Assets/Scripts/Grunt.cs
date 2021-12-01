@@ -2,17 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Grunt :  Enemy
+public class Grunt : Enemy
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+//you can put additional grunt stuff in here at will!
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

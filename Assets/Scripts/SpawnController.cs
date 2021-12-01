@@ -12,10 +12,30 @@ public class SpawnController : MonoBehaviour
     public GameObject[] spawnables;
     public Transform[] spawnPoints;
 
+    private static SpawnController instance;
+
+    public static SpawnController Instance
+    {
+        private set 
+        {
+            if (instance != null)
+            {
+                Destroy(value.gameObject);
+                return;
+            }
+            else { instance = value; }
+                
+        }
+
+        get { return instance; }
+    }
+
     // Start is called before the first frame update
     void Awake()
     {
+        Instance = this;
         GameManager.Manager.levelStart += StartSpawn;
+        DontDestroyOnLoad(this);
     }
 
     // Update is called once per frame

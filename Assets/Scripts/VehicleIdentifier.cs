@@ -5,4 +5,5 @@ using UnityEngine;
 public class VehicleIdentifier : MonoBehaviour
 {
     public int carNum;
+
 }
