@@ -443,6 +443,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointValue: 30
+  itemDrop: {fileID: 11400000, guid: 5feddd89e39de1046a52fe6fc2c6f897, type: 2}
   size: 2
 --- !u!1 &5581110657387765702
 GameObject:

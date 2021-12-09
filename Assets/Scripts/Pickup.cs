@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class Pickup : MonoBehaviour
 {
-    public int pointValue;
+    public SpawnableItem collectible;
 
+    int pointValue;
+
+    public void Start()
+    {
+        pointValue = collectible.pointValue;
+    }
     private void OnDestroy()
     {
         GameManager.Manager.CurrentScore += pointValue;

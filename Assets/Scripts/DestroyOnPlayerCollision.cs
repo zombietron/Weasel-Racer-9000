@@ -13,6 +13,10 @@ public class DestroyOnPlayerCollision : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if(collision.gameObject.CompareTag("collectible"))
+        {
+            Destroy(collision.gameObject);
+        }
         
         if(collision.gameObject.CompareTag("bullet"))
         {

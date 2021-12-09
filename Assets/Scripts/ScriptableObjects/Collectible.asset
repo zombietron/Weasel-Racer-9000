@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bff37642add4604f81afdeca81ab3e4, type: 3}
+  m_Name: Collectible
+  m_EditorClassIdentifier: 
+  Collectible: {fileID: 7755329626732745447, guid: dcab48fcc8245804b9703a0c57ff4a0d, type: 3}
+  pointValue: 10

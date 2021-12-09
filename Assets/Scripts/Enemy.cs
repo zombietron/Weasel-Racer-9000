@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     public int pointValue;
     NavMeshAgent agent;
     Transform followObject;
+    public SpawnableItem itemDrop;
 
     public float size;
     private void Awake()
@@ -26,7 +27,10 @@ public class Enemy : MonoBehaviour
 
     public virtual void IDied()
     {
+        var go = Instantiate<GameObject>(itemDrop.Collectible);
+        go.transform.position = transform.position;
         GameManager.Manager.CurrentScore += pointValue;
+
     }
 
     //made this overridable as well

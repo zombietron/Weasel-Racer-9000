@@ -84,6 +84,7 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
+        
         SaveData.LoadGameData();
     }
 
@@ -101,6 +102,7 @@ public class GameManager : MonoBehaviour
             player = GameObject.FindGameObjectWithTag("Player").transform;
             Debug.Log("OnSceneLoadedCalled");
             SpawnVehicle(carSelection);
+            currentScore = 0;
             UIManager.Instance.UpdateScore(currentScore);
             levelStart.Invoke();
         }
@@ -127,6 +129,7 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
+        
         StartCoroutine(restart(.5f));    
     }
 

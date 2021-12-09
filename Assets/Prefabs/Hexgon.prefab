@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e3e54347e9def544ae3c2d21c3a9c4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointValue: 5
+  collectible: {fileID: 11400000, guid: 5feddd89e39de1046a52fe6fc2c6f897, type: 2}
 --- !u!135 &4901129861996320321
 SphereCollider:
   m_ObjectHideFlags: 0
